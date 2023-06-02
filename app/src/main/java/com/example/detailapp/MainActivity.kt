@@ -9,8 +9,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
@@ -24,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,8 +44,11 @@ fun Body(context : Context) {
 
     Column(
         verticalArrangement= Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier=Modifier.fillMaxSize().fillMaxWidth().background(color= Color(0x27374D))
+        modifier= Modifier
+            .fillMaxSize()
+            .fillMaxWidth()
+            .background(color = Color(0xFF27374D))
+            .padding(55.dp)
     )
     {
         var name by remember{ mutableStateOf("") }
@@ -49,19 +56,19 @@ fun Body(context : Context) {
         var loc by remember{ mutableStateOf("") }
         var mobile by remember{ mutableStateOf("") }
 
-        Text(text="Name")
+        Text(text="Name",color=Color.White)
 
         TextField(value = name, onValueChange = {name=it})
 
-        Text(text="Email")
+        Text(text="Email",color=Color.White)
 
         TextField(value = email, onValueChange = {email=it})
 
-        Text(text="Location")
+        Text(text="Location",color=Color.White)
 
         TextField(value = loc, onValueChange = {loc=it})
 
-        Text(text="Mobile No.")
+        Text(text="Mobile No.",color=Color.White)
 
         TextField(value = mobile, onValueChange = {mobile=it})
 
@@ -73,7 +80,7 @@ fun Body(context : Context) {
                 Text(text="Toast")
             }
 
-            Text(text="   ")
+            Text(text="                            ")
 
             Button(onClick = { /*TODO*/ }) {
                 Text(text="Text")
@@ -82,17 +89,24 @@ fun Body(context : Context) {
 
         Text(text=" ")
 
-        Button(onClick = {
-            val k= Intent(context,MainActivity2::class.java)
-            k.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            k.putExtra("name",name)
-            k.putExtra("email",email)
-            k.putExtra("loc",loc)
-            k.putExtra("mobile",mobile)
+        Row(
+        ){
 
-            context.startActivity(k)
-        }) {
-            Text(text="Next")
+            Text(text="                         ")
+
+            Button(onClick = {
+                val k= Intent(context,MainActivity2::class.java)
+                k.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                k.putExtra("name",name)
+                k.putExtra("email",email)
+                k.putExtra("loc",loc)
+                k.putExtra("mobile",mobile)
+
+                context.startActivity(k)
+            }) {
+                Text(text="Next")
+            }
         }
+
     }
 }
